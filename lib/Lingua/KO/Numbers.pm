@@ -7,9 +7,9 @@ use utf8;
 our $VERSION = '0.01';
 use parent qw(Exporter);
 
-our @EXPORT = qw(
-    ko2num num2ko ko_to_number number_to_ko
-);
+our @EXPORT = qw(ko2num num2ko ko_to_number number_to_ko);
+our %EXPORT_TAGS = (all => [ @EXPORT, qw(to_string) ]);
+our @EXPORT_OK   = (@{$EXPORT_TAGS{all}});
 
 use overload 
     q("") => \&stringify,
@@ -387,8 +387,6 @@ This module converts Korean text (Hangul) in UTF-8 (or romaja in ascii) to numbe
 
    perl -MLingua::KO::Numbers \
        -e '$y="\x{c774}\x{cc9c}\x{c2ed}\x{c0ac}"; printf "(C) %d Koichi Taniguchi\n", ko2num($y)'
-
-Lingua::KO::Numbers is
 
 =head1 AUTHOR
 
